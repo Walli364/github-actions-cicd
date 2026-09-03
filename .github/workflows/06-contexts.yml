@@ -1,0 +1,26 @@
+name: Contexts
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  echo-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: display information about the workflow run
+        run: |
+          echo "Workflow name: ${{ github.workflow }}"
+          echo "Workflow run ID: ${{ github.run_id }}"
+          echo "Workflow run number: ${{ github.run_number }}"
+          echo "Event name: ${{ github.event_name }}"
+          echo "Event path: ${{ github.event_path }}"
+          echo "Repository name: ${{ github.repository }}"
+          echo "Repository owner: ${{ github.repository_owner }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "Ref: ${{ github.ref }}"
+          echo "SHA: ${{ github.sha }}"
+
+      - name: retrieve variables
+        run: |
+          echo "variable value: ${{ vars.MY_VAR }}"
