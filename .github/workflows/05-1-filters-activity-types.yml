@@ -1,0 +1,15 @@
+name: Event filters and activity types
+
+on:
+  pull_request:
+    types:  # Activity types to filter the events that trigger the workflow
+      - opened
+      - synchronize
+    branches:  # Filter the events to only trigger on the main branch
+      - main
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "This workflow is triggered by pull request events of type 'opened' or 'synchronize' on the 'main' branch."
