@@ -18,7 +18,7 @@ jobs:
           # npm run build
   unit-test:
     runs-on: ubuntu-latest
-    continue-on-error: true
+    # continue-on-error: true
     steps:
       - name: Running unit tests 
         run: echo "Running unit tests"
