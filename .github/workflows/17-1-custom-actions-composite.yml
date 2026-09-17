@@ -1,5 +1,4 @@
 name: 17 - 1 - custom actions - composite
-run-name: 17 - 1 - custom actions - composite | env - ${{ inputs.target-env }} 
 
 on:
   workflow_dispatch:
@@ -18,11 +17,9 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ${{ env.working-directory }}
     steps:
       - uses: actions/checkout@v4
+
       - name: Setup node and npm dependencies
         uses: ./.github/actions/composite-cache-deps
         with:
@@ -31,9 +28,13 @@ jobs:
           target-env: ${{ inputs.target-env }}
 
       - name: test
-        run: npm test -- --watch=false --passWithNoTests
+        run: |
+          cd ${{ env.working-directory }}
+          CI=true npm test -- --watch=false --runInBand --ci --passWithNoTests
         continue-on-error: true
 
       - name: build
-        run: npm run build
+        run: |
+          cd ${{ env.working-directory }}
+          CI=true npm run build
         continue-on-error: true
