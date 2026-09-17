@@ -5,13 +5,13 @@ inputs:
   node-version:
     description: 'Node.js version to use'
     required: true
-    default: 20.x
+    default: 21.x
   working-dir:
     description: 'Working directory for the action'
     required: false
     default: .
   target-env:
-    description: "dev" or "prod"
+    description: "dev or prod"
     required: false
     default: development
 
