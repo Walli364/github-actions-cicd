@@ -35,5 +35,5 @@ runs:
       shell: bash
       working-directory: ${{ inputs.working-dir }}
       run: |
-        npm ci
+        npm install --no-audit --no-fund
 
